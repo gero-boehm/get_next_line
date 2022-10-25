@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:02:58 by gbohm             #+#    #+#             */
-/*   Updated: 2022/10/25 10:41:45 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/10/25 13:14:39 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strappend(char *a, char *b)
 		return (NULL);
 	length = ft_strlen(a);
 	cursor = a + length;
-	while (*b && *b != '\n')
+	while (*b && *(b - 1) != '\n')
 		*cursor++ = *b++;
 	return (a);
 }

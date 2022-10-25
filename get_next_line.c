@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/10/25 12:56:31 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/10/25 13:05:56 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ size_t	get_line_length(char *str)
 	size_t	length;
 
 	length = 0;
-	while (str[length] && str[length] != '\n')
+	while (str[length] && str[length - 1] != '\n')
 		length++;
 	return (length);
 }
@@ -71,11 +71,11 @@ char	*get_last(char *buffer, int size, int length)
 	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (size < length)
+	while (length < size)
 	{
-		str[i] = buffer[size];
+		str[i] = buffer[length];
 		i++;
-		size++;
+		length++;
 	}
 	return (str);
 }
@@ -115,7 +115,7 @@ char	*get_next_line(int fd)
 				free(str);
 				return (NULL);
 			}
-			printf("%s\n". last)
+			// printf("%s\n", last);
 			return (str);
 		}
 	}
