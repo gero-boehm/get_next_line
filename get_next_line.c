@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/10/25 11:28:09 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/10/25 12:56:31 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,26 @@ size_t	get_line_length(char *str)
 	return (length);
 }
 
+char	*get_last(char *buffer, int size, int length)
+{
+	int		i;
+	int		count;
+	char	*str;
+
+	count = size - length;
+	str = ft_calloc(count + 1, sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (size < length)
+	{
+		str[i] = buffer[size];
+		i++;
+		size++;
+	}
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*last;
@@ -68,8 +88,7 @@ char	*get_next_line(int fd)
 	char		*new;
 	size_t		length;
 
-	last = NULL;
-	str = NULL;
+	str = last;
 	while (1)
 	{
 		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
@@ -88,7 +107,17 @@ char	*get_next_line(int fd)
 		str = ft_strappend(new, buffer);
 		// printf("=== %s\n", str);
 		if (length < BUFFER_SIZE)
+		{
+			last = get_last(buffer, BUFFER_SIZE, length);
+			if (last == NULL)
+			{
+				free(buffer);
+				free(str);
+				return (NULL);
+			}
+			printf("%s\n". last)
 			return (str);
+		}
 	}
 	return (NULL);
 }
