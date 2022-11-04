@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=20
+CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=2000
 NAME=libft.a
 MANDATORY=get_next_line.o get_next_line_utils.o
 BONUS=

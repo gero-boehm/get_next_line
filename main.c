@@ -19,7 +19,13 @@ int main(void)
 
 	print(fd);
 
-	// printf("%zu\n", strlen(""));
-
 	close(fd);
+
+	// char *t[2];
+
+	// t[0] = "abcdef";
+	// t[1] = "123456789";
+	// t[2] = "123456789";
+	// printf("%s\n", t[0]);
+	// printf("%s\n", t[1]);
 }

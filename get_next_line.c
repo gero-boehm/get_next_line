@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/10/25 13:24:56 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/04 14:52:27 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ char	*free_all(char *buffer, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*last;
+	static char	*last[1024];
 	char		*str;
 	char		*buffer;
 	char		*new;
 	size_t		length;
 
-	str = last;
+	str = last[fd];
 	while (1)
 	{
 		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
@@ -71,8 +71,8 @@ char	*get_next_line(int fd)
 		str = ft_strappend(new, buffer);
 		if (length < BUFFER_SIZE)
 		{
-			last = get_last(buffer, BUFFER_SIZE, length);
-			if (last == NULL)
+			last[fd] = get_last(buffer, BUFFER_SIZE, length);
+			if (last[fd] == NULL)
 				return (free_all(buffer, str));
 			return (str);
 		}
