@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/04 14:52:27 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/08 14:39:37 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,38 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
-size_t	get_line_length(char *str)
-{
-	size_t	length;
+#include <stdio.h>
 
-	length = 0;
-	while (str[length] && str[length - 1] != '\n')
-		length++;
-	return (length);
-}
-
-char	*get_last(char *buffer, int size, int length)
-{
-	int		i;
-	int		count;
-	char	*str;
-
-	count = size - length;
-	str = ft_calloc(count + 1, sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (length < size)
-	{
-		str[i] = buffer[length];
-		i++;
-		length++;
-	}
-	return (str);
-}
-
-char	*free_all(char *buffer, char *str)
-{
-	free(buffer);
-	free(str);
-	return (NULL);
-}
 
 char	*get_next_line(int fd)
 {
-	static char	*last[1024];
-	char		*str;
+	static char	*last[1024] = {NULL};
 	char		*buffer;
-	char		*new;
-	size_t		length;
+	int			bytes_read;
 
-	str = last[fd];
+	if (last[fd] == NULL)
+	{
+		if (!ft_calloc2(1, sizeof(char), &last[fd]))
+			return (NULL);
+	}
 	while (1)
 	{
-		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-		read(fd, buffer, BUFFER_SIZE);
-		length = get_line_length(buffer);
-		new = increase_buffer(str, length);
-		if (new == NULL)
-			return (free_all(buffer, str));
-		str = ft_strappend(new, buffer);
-		if (length < BUFFER_SIZE)
+		printf("before newline\n");
+		if (has_newline(last[fd]))
+			return (cut(&last[fd]));
+		printf("=== before buffer\n");
+		if (!ft_calloc2(BUFFER_SIZE + 1, sizeof(char), &buffer))
+			return (NULL);
+		printf("=== before read\n");
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		printf("=== bytes %d;\n", bytes_read);
+		if (bytes_read == 0)
 		{
-			last[fd] = get_last(buffer, BUFFER_SIZE, length);
-			if (last[fd] == NULL)
-				return (free_all(buffer, str));
-			return (str);
+			free(buffer);
+			return (cut(&last[fd]));
 		}
+		if (!ft_strappend(&last[fd], buffer, bytes_read))
+			return (free_all(2, &buffer, &last[fd]));
 	}
 	return (NULL);
 }

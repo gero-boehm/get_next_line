@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/10/25 10:28:05 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/08 10:26:23 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 char	*get_next_line(int fd);
 
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*increase_buffer(char *buffer, size_t increment);
-char	*ft_strappend(char *a, char *b);
+void	*ft_calloc2(size_t count, size_t size, char **ptr);
+int		ft_strappend(char **dst, char *src, int src_length);
+char	*cut(char **str);
+char	*free_all(int c, ...);
+int		has_newline(char *str);
 
 #endif
