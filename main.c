@@ -91,4 +91,27 @@ int main(void)
 	// t[2] = "123456789";
 	// printf("%s\n", t[0]);
 	// printf("%s\n", t[1]);
+
+	// char *str = strdup("a\nb\n");
+	// // for(int i = 32; i < 127; i++)
+	// // {
+	// // 	char *app = calloc(3, 1);
+	// // 	app[0] = (char) i;
+	// // 	app[1] = '\n';
+	// // 	ft_strappend(&str, app, 2);
+	// // 	char *res = cut(&str);
+	// // 	printf("%3d: '%s' '%s'\n", i, str, res);
+	// // }
+	// char *app = calloc(3, 1);
+	// app[0] = 'a';
+	// app[1] = '\n';
+	// ft_strappend(&str, app, 2);
+	// char *res = cut(&str);
+	// printf("'%s' | '%s'\n", str, res);
+	// res = cut(&str);
+	// printf("'%s' | '%s'\n", str, res);
+	// printf("%3d: '%s'\n", i, str);
+	// ft_strappend(&str, app, 2);
+	// char *res = cut(&str);
+	// printf("%3d: '%s' '%s'\n", i, str, res);
 }

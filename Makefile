@@ -1,6 +1,5 @@
 CC=gcc
-# CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=50000 -g -fsanitize=address
-CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=50000
+CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=1 -g
 NAME=libft.a
 MANDATORY=get_next_line.o get_next_line_utils.o
 BONUS=
@@ -15,7 +14,7 @@ bonus: $(BONUS)
 	ar -crs $(NAME) $^
 
 test: $(MANDATORY) $(BONUS) main.o
-	$(CC) -o $@ $^ && ./test
+	$(CC) -g -o $@ $^ && ./test
 
 clean:
 	rm -f *.o

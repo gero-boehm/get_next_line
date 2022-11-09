@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/08 14:39:37 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/09 15:15:52 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "get_next_line.h"
 
 #include <stdio.h>
-
 
 char	*get_next_line(int fd)
 {
@@ -30,15 +29,11 @@ char	*get_next_line(int fd)
 	}
 	while (1)
 	{
-		printf("before newline\n");
 		if (has_newline(last[fd]))
 			return (cut(&last[fd]));
-		printf("=== before buffer\n");
 		if (!ft_calloc2(BUFFER_SIZE + 1, sizeof(char), &buffer))
 			return (NULL);
-		printf("=== before read\n");
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		printf("=== bytes %d;\n", bytes_read);
 		if (bytes_read == 0)
 		{
 			free(buffer);
