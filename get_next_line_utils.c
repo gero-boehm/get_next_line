@@ -6,15 +6,13 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:02:58 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/09 15:13:37 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/09 19:08:42 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#include <stdio.h>
 
 
 int	ft_calloc2(size_t count, size_t size, char **ptr)

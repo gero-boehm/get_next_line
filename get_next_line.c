@@ -6,15 +6,13 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/09 15:15:52 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/09 19:08:38 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line.h"
-
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {

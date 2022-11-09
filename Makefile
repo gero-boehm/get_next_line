@@ -1,19 +1,22 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=1 -g
-NAME=libft.a
-MANDATORY=get_next_line.o get_next_line_utils.o
-BONUS=
+CC=cc
+CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=20
+NAME=get_next_line.a
+MANDATORY_SRC=get_next_line.c get_next_line_utils.c
+BONUS_SRC=
+MANDATORY_OBJ=$(MANDATORY_SRC:.c=.o)
+BONUS_OBJ=$(BONUS_SRC:.c=.o)
+INCLUDES=libft.h
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-all: $(MANDATORY)
+all: $(MANDATORY_OBJ)
 	ar -crs $(NAME) $^
 
-bonus: $(BONUS)
+bonus: $(MANDATORY_OBJ) $(BONUS_OBJ)
 	ar -crs $(NAME) $^
 
-test: $(MANDATORY) $(BONUS) main.o
+test: $(MANDATORY_OBJ) $(BONUS_OBJ) main.o
 	$(CC) -g -o $@ $^ && ./test
 
 clean:
