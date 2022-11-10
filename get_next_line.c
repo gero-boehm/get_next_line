@@ -6,11 +6,10 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/10 10:41:10 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/10 12:31:57 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line.h"
 
@@ -20,8 +19,8 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	int			bytes_read;
 
-	if ((fd < 0 || fd > 1023) || (last == NULL
-			&& !ft_calloc2(1, sizeof(char), &last)))
+	if ((fd < 0 || fd > 1023) || (BUFFER_SIZE <= 0)
+		|| (last == NULL && !ft_calloc2(1, sizeof(char), &last)))
 		return (NULL);
 	while (1)
 	{

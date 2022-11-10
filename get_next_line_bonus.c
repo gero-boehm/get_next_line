@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/10 10:31:58 by gbohm            ###   ########.fr       */
+/*   Updated: 2022/11/10 12:31:53 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line.h"
 
@@ -20,8 +19,8 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	int			bytes_read;
 
-	if ((fd < 0 || fd > 1023) || (last[fd] == NULL
-			&& !ft_calloc2(1, sizeof(char), &last[fd])))
+	if ((fd < 0 || fd > 1023) || (BUFFER_SIZE <= 0)
+		|| (last[fd] == NULL && !ft_calloc2(1, sizeof(char), &last[fd])))
 		return (NULL);
 	while (1)
 	{
