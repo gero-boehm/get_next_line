@@ -2,10 +2,10 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=20
 NAME=get_next_line.a
 MANDATORY_SRC=get_next_line.c get_next_line_utils.c
-BONUS_SRC=
+BONUS_SRC=get_next_line_bonus.c get_next_line_utils_bonus.c
 MANDATORY_OBJ=$(MANDATORY_SRC:.c=.o)
 BONUS_OBJ=$(BONUS_SRC:.c=.o)
-INCLUDES=libft.h
+# INCLUDES=libft.h
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

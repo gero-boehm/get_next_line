@@ -26,24 +26,29 @@ int main(void)
 	// printf("a: '%s' %d\n", lin, 0);
 	// printf("b: '%s' %lu\n", str, strlen(str));
 
-	int fd = open("test.txt", O_RDONLY);
+	// int fd = open("test.txt", O_RDONLY);
 
-	// char *buffer = calloc(1000, 1);
-	// int c = read(fd, buffer, 1000);
-	// printf("%d\n", c);
-	// c = read(fd, buffer, 1000);
-	// printf("%d\n", c);
+	// // char *buffer = calloc(1000, 1);
+	// // int c = read(fd, buffer, 1000);
+	// // printf("%d\n", c);
+	// // c = read(fd, buffer, 1000);
+	// // printf("%d\n", c);
 
-	print(fd);
+	// print(fd);
 
-	// char *line = get_next_line(fd);
-	// printf("%s", line);
-	// line = get_next_line(fd);
-	// printf("%s", line);
-	// line = get_next_line(fd);
-	// printf("%s", line);
+	// // char *line = get_next_line(fd);
+	// // printf("%s", line);
+	// // line = get_next_line(fd);
+	// // printf("%s", line);
+	// // line = get_next_line(fd);
+	// // printf("%s", line);
 
-	close(fd);
+	// close(fd);
+	printf("1\n");
+	char *line = get_next_line(3);
+	// printf("2\n");
+	// // printf("%s", line);
+	free(line);
 
 	// char *str = strdup("this");
 	// printf("%s\n", str);
