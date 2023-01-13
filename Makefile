@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-Wall -Wextra -Werror -D BUFFER_SIZE=100
+CFLAGS=-Wall -Wextra -Werror
 NAME=get_next_line
 MANDATORY_SRC=get_next_line.c get_next_line_utils.c
 BONUS_SRC=get_next_line_bonus.c get_next_line_utils_bonus.c
@@ -13,7 +13,7 @@ HEADERS=get_next_line.h
 all: $(MANDATORY_OBJ)
 	ar -crs $(NAME) $^
 
-bonus: $(MANDATORY_OBJ) $(BONUS_OBJ)
+bonus: $(BONUS_OBJ)
 	ar -crs $(NAME) $^
 
 test: $(MANDATORY_OBJ) main.o
