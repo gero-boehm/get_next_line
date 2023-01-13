@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:02:58 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/10 10:43:11 by gbohm            ###   ########.fr       */
+/*   Updated: 2023/01/13 10:21:36 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	ft_calloc2(size_t count, size_t size, char **ptr)
 	total = count * size;
 	mem = NULL;
 	if (count && total / count != size)
-		return (0);
+		return (1);
 	mem = malloc(total);
 	if (mem == NULL)
-		return (0);
+		return (2);
 	while (total--)
 		mem[total] = 0;
 	*ptr = mem;
-	return (1);
+	return (0);
 }
 
 int	ft_strappend(char **dst, char *src, int src_length)
@@ -38,14 +38,14 @@ int	ft_strappend(char **dst, char *src, int src_length)
 	int		dst_length;
 
 	if (dst == NULL || src == NULL)
-		return (0);
-	if (src_length == 0)
 		return (1);
+	if (src_length == 0)
+		return (0);
 	dst_length = 0;
 	while ((*dst)[dst_length])
 		dst_length++;
-	if (!ft_calloc2(dst_length + src_length + 1, sizeof(char), &new))
-		return (0);
+	if (ft_calloc2(dst_length + src_length + 1, sizeof(char), &new))
+		return (2);
 	while (src_length--)
 		new[dst_length + src_length] = src[src_length];
 	while (dst_length--)
@@ -53,7 +53,7 @@ int	ft_strappend(char **dst, char *src, int src_length)
 	free(*dst);
 	free(src);
 	*dst = new;
-	return (1);
+	return (0);
 }
 
 int	has_newline(char *str)
@@ -77,6 +77,7 @@ char	*free_all(int c, ...)
 		free(*buffer);
 		*buffer = NULL;
 	}
+	va_end(args);
 	return (NULL);
 }
 
@@ -96,12 +97,12 @@ char	*cut(char **str)
 	i = length;
 	while ((*str)[i])
 		i++;
-	if (!ft_calloc2(i - length + 1, sizeof(char), &leftover))
-		return (NULL);
+	if (ft_calloc2(i - length + 1, sizeof(char), &leftover))
+		return (free_all(1, str));
 	while (i-- > length)
 		leftover[i - length] = (*str)[i];
-	if (!ft_calloc2(length + 1, sizeof(char), &cut))
-		return (free_all(1, &leftover));
+	if (ft_calloc2(length + 1, sizeof(char), &cut))
+		return (free_all(2, str, &leftover));
 	while (length--)
 		cut[length] = (*str)[length];
 	free(*str);

@@ -6,7 +6,7 @@
 /*   By: gbohm <gbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:25:38 by gbohm             #+#    #+#             */
-/*   Updated: 2022/11/14 09:30:42 by gbohm            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:36:22 by gbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	int			bytes_read;
 
-	if ((fd < 0 || fd > 1023) || (BUFFER_SIZE <= 0)
-		|| (last == NULL && !ft_calloc2(1, sizeof(char), &last)))
+	if ((fd < 0) || (BUFFER_SIZE <= 0)
+		|| (last == NULL && ft_calloc2(1, sizeof(char), &last)))
 		return (NULL);
 	while (1)
 	{
 		if (has_newline(last))
 			return (cut(&last));
-		if (!ft_calloc2(BUFFER_SIZE + 1, sizeof(char), &buffer))
+		if (ft_calloc2(BUFFER_SIZE + 1, sizeof(char), &buffer))
 			return (free_all(1, &last));
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
@@ -36,7 +36,7 @@ char	*get_next_line(int fd)
 				return (free_all(1, &last));
 			return (cut(&last));
 		}
-		if (!ft_strappend(&last, buffer, bytes_read))
+		if (ft_strappend(&last, buffer, bytes_read))
 			return (free_all(2, &buffer, &last));
 	}
 	return (NULL);
